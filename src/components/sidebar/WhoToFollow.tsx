@@ -26,31 +26,29 @@ const WhoToFollow = async () => {
       <div className="text-xl font-bold">
         <p>Users to Follow</p>
       </div>
-      <div>
-        {users &&
-          users.map((user) => (
-            <div className="flex items-center justify-between">
-              <div className="flex gap-3">
-                <Link href={`/user/${user.id}`}>
-                  <UserAvatar avatarUrl={user.avatarUrl} />
-                </Link>
-                <div  >
-                  <Link href={`/user/${user.id}`}>
-                    <p className="line-clamp-1 font-semibold hover:underline">
-                      @{user.username}
-                    </p>
-                  </Link>
-                  <p className="line-clamp-1 text-muted-foreground">
-                    {user.displayName}
-                  </p>
-                </div>
-              </div>
+      {users &&
+        users.map((user) => (
+          <div className="flex items-center justify-between">
+            <div className="flex gap-3">
+              <Link href={`/user/${user.id}`}>
+                <UserAvatar avatarUrl={user.avatarUrl} />
+              </Link>
               <div>
-                <Button>Follow</Button>
+                <Link href={`/user/${user.id}`}>
+                  <p className="line-clamp-1 font-semibold hover:underline">
+                    @{user.username}
+                  </p>
+                </Link>
+                <p className="line-clamp-1 text-muted-foreground">
+                  {user.displayName}
+                </p>
               </div>
             </div>
-          ))}
-      </div>
+            <div>
+              <Button>Follow</Button>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };
