@@ -5,7 +5,7 @@ import Post from "@/components/posts/Post";
 import PostsSkeletonLoader from "@/components/skeletonLoaders/PostsSkeletonLoader";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import React from "react";
 

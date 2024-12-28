@@ -3,6 +3,7 @@ import "./globals.css";
 import { Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import ReactQueryProvider from "./ReactQueryProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const nunito = Nunito({
   variable: "--font-inter",
@@ -34,6 +35,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </ReactQueryProvider>
       </body>
