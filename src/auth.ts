@@ -13,7 +13,7 @@ export const lucia = new Lucia(adapter, {
       secure: process.env.NODE_ENV === "production",
     },
   },
-  getUserAttributes(databaseUserAttributes: DatabaseUserAttributes) {
+  getUserAttributes(databaseUserAttributes) {
     return {
       id: databaseUserAttributes.id,
       username: databaseUserAttributes.username,

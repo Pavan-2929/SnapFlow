@@ -22,3 +22,5 @@ const logout = async () => {
 
   return redirect("/");
 };
+
+export default logout

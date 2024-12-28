@@ -71,7 +71,7 @@ const LoginForm = () => {
         />
         <div className="w-full pt-3">
           <LoadingButton loading={isPending} type="submit" className="w-full">
-            Register
+            Login
           </LoadingButton>
         </div>
       </form>
