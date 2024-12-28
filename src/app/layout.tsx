@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -17,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | SnapFlow",
     default: "SnapFlow",
   },
-  description: "Social Meida website built in NextJS.",
+  description: "Social Media website built in NextJS.",
 };
 
 export default function RootLayout({
@@ -27,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${nunito.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -18,7 +18,7 @@ const Post = ({ post }: PostProps) => {
         <div className="space-y-0.5">
           <Link
             href={`/user/${post.user.username}`}
-            className="font-medium hover:underline"
+            className="font-semibold hover:underline"
           >
             {post.user.displayName}
           </Link>
