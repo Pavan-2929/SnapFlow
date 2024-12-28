@@ -1,14 +1,14 @@
-"use sever"
+"use server";
 
 import { lucia } from "@/auth";
 import prisma from "@/lib/prisma";
-import { loginSchema, loginValue } from "@/lib/validations";
+import { loginSchema, LoginValues } from "@/lib/validations";
 import bcryptjs from "bcryptjs";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const login = async (credentials: loginValue): Promise<{ error: string }> => {
+const login = async (credentials: LoginValues): Promise<{ error: string }> => {
   try {
     const { username, password } = loginSchema.parse(credentials);
 
@@ -27,7 +27,7 @@ const login = async (credentials: loginValue): Promise<{ error: string }> => {
       };
     }
 
-    const isPasswordValid = await bcryptjs.compare(user.password, password);
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordValid) {
       return {
@@ -53,3 +53,5 @@ const login = async (credentials: loginValue): Promise<{ error: string }> => {
     };
   }
 };
+
+export default login;

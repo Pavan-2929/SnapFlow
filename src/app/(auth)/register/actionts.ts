@@ -1,7 +1,7 @@
-"use seveer";
+"use server";
 
 import prisma from "@/lib/prisma";
-import { registerSchema, RegisterValue } from "@/lib/validations";
+import { registerSchema, RegisterValues } from "@/lib/validations";
 import { generateIdFromEntropySize } from "lucia";
 import bcryptjs from "bcryptjs";
 import { lucia } from "@/auth";
@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 const register = async (
-  credentials: RegisterValue,
+  credentials: RegisterValues,
 ): Promise<{ error: string }> => {
   try {
     const { username, email, password } = registerSchema.parse(credentials);
@@ -26,7 +26,7 @@ const register = async (
       },
     });
 
-    if (!isUsernameExist) {
+    if (isUsernameExist) {
       return {
         error: "Username already taken.",
       };
@@ -41,7 +41,7 @@ const register = async (
       },
     });
 
-    if (!isEmailExist) {
+    if (isEmailExist) {
       return {
         error: "Email already registered.",
       };

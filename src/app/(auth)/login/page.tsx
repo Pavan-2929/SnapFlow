@@ -1,31 +1,31 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
-import registerImage from "@/assets/register.png";
-import RegisterForm from "./RegisterForm";
+import LoginImage from "@/assets/login.png";
+import LoginForm from "./LoginForm";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Register",
+  title: "Login",
 };
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="flex h-full max-h-[40rem] w-full max-w-[60rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <Image
-          src={registerImage}
+          src={LoginImage}
           alt="Register Image"
-          className="hidden object-cover md:block w-1/2"
+          className="hidden w-1/2 object-cover md:block"
         />
-        <div className="w-full space-y-6 overflow-y-auto md:px-8 px-6 py-6 md:w-1/2">
-          <div className="text-center space-y-1">
+        <div className="w-full space-y-6 overflow-y-auto px-6 py-6 md:w-1/2 md:px-8">
+          <div className="space-y-1 text-center">
             <h1 className="text-2xl font-bold">Start with SnapFlow</h1>
           </div>
           <div className="space-y-5">
-            <RegisterForm />
-            <p className="text-center hover:underline text-medium text-muted-foreground">
-              Already have an account? <Link href="/login">Login</Link>
+            <LoginForm />
+            <p className="text-medium text-center text-muted-foreground hover:underline">
+              Don't have an account? <Link href="/register">Register</Link>
             </p>
           </div>
         </div>
@@ -34,4 +34,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

@@ -14,11 +14,11 @@ export const registerSchema = z.object({
   ),
 });
 
-export type RegisterValue = z.infer<typeof registerSchema>;
+export type RegisterValues = z.infer<typeof registerSchema>;
 
 export const loginSchema = z.object({
-  username: requiredString.email("Invalid email address"),
+  username: requiredString,
   password: requiredString,
 });
 
-export type loginValue = z.infer<typeof loginSchema>;
+export type LoginValues = z.infer<typeof loginSchema>;
