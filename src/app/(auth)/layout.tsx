@@ -4,7 +4,6 @@ import React from "react";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const { user } = await validateRequest();
-  console.log(user);
 
   if (user) redirect("/");
 

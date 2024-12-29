@@ -1,9 +1,10 @@
+"use client";
+
 import { PostData } from "@/lib/types";
 import React from "react";
 import UserAvatar from "../controls/UserAvatar";
 import moment from "moment";
 import Link from "next/link";
-import { validateRequest } from "@/auth";
 import { useSession } from "@/app/(main)/SessionProvider";
 import PostMoreButton from "./delete/PostMoreButton";
 
@@ -13,6 +14,7 @@ interface PostProps {
 
 const Post = ({ post }: PostProps) => {
   const { user } = useSession();
+
 
   return (
     <div className="space-y-3 rounded-2xl bg-card p-5 shadow-sm">

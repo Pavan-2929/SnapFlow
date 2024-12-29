@@ -1,10 +1,10 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { userDataSelect } from "@/lib/types";
 import React from "react";
 import UserAvatar from "../controls/UserAvatar";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import FollowButton from "../controls/FollowButton";
+import { getUserDataSelect } from "@/lib/types";
 
 const WhoToFollow = async () => {
   const { user } = await validateRequest();
@@ -16,10 +16,16 @@ const WhoToFollow = async () => {
       NOT: {
         id: user.id,
       },
+      followers: {
+        none: {
+          followerId: user.id,
+        },
+      },
     },
     take: 5,
-    select: userDataSelect,
+    select: getUserDataSelect(user.id),
   });
+
 
   return (
     <div className="w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
@@ -45,7 +51,15 @@ const WhoToFollow = async () => {
               </div>
             </div>
             <div>
-              <Button>Follow</Button>
+              <FollowButton
+                userId={user.id}
+                initialState={{
+                  totalFollowers: user._count.followers,
+                  isFollowedByLoggedInUser: user.followers.some(
+                    ({ followerId }) => followerId === user.id,
+                  ),
+                }}
+              />
             </div>
           </div>
         ))}

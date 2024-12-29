@@ -43,14 +43,20 @@ const ForYouFeed = () => {
       </p>
     );
   }
+
+
   return (
     <InfiniteScrollContainer
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
       className="space-y-5"
     >
-      {posts.map((post) => (
-        <Post post={post} key={post.id} />
-      ))}
+      {posts && posts.length > 0 ? (
+        posts.map((post) => <Post post={post} key={post.id} />)
+      ) : (
+        <p className="my-3 text-center text-xl font-medium">
+          No posts found | add one.
+        </p>
+      )}
       {isFetchingNextPage && <Loader2 className="mx-auto my-5 animate-spin" />}
     </InfiniteScrollContainer>
   );

@@ -36,11 +36,11 @@ const TrendingTopics = async () => {
       <div className="text-xl font-bold">
         <p>Trending Topics</p>
       </div>
-      {tredingTopicsData.map(({ hashtag, count }) => {
+      {tredingTopicsData.map(({ hashtag, count }, index) => {
         const title = hashtag.split("#")[1];
 
         return (
-          <Link href={`/hashtag/${title}`} className="block">
+          <Link href={`/hashtag/${title}`} className="block" key={index}>
             <p className="line-clamp-1 font-semibold hover:underline">
               {hashtag}
             </p>
