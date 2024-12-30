@@ -7,9 +7,11 @@ import {
 import submitPost from "./actions";
 import { useToast } from "@/hooks/use-toast";
 import { PostsPage } from "@/lib/types";
+import { useSession } from "@/app/(main)/SessionProvider";
 
 export function SubmitPostMutation() {
   const { toast } = useToast();
+  const { user } = useSession();
 
   const queryClient = useQueryClient();
 
@@ -17,7 +19,14 @@ export function SubmitPostMutation() {
     mutationFn: submitPost,
     onSuccess: (newPost) => {
       const queryFilter = {
-        queryKey: ["posts", "for-you"],
+        queryKey: ["posts"],
+        predicate(query: any) {
+          return (
+            query.queryKey.includes("for-you-feed") ||
+            (query.queryKey.includes("user-posts") &&
+              query.queryKey.includes(user.id))
+          );
+        },
       } satisfies QueryFilters;
 
       queryClient.invalidateQueries(queryFilter);
@@ -45,7 +54,7 @@ export function SubmitPostMutation() {
       queryClient.invalidateQueries({
         queryKey: queryFilter.queryKey,
         predicate(query) {
-          return !query.state.data;
+          return queryFilter.predicate(query) && !query.state.data;
         },
       });
 

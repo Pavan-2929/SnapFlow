@@ -18,7 +18,7 @@ const ForYouFeed = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["posts", "for-you"],
+    queryKey: ["posts", "for-you-feed"],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(

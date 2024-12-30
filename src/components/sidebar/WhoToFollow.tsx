@@ -26,7 +26,6 @@ const WhoToFollow = async () => {
     select: getUserDataSelect(user.id),
   });
 
-
   return (
     <div className="w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">
@@ -36,11 +35,11 @@ const WhoToFollow = async () => {
         users.map((user) => (
           <div key={user.id} className="flex items-center justify-between">
             <div className="flex gap-3">
-              <Link href={`/user/${user.id}`}>
+              <Link href={`/user/${user.username}`}>
                 <UserAvatar avatarUrl={user.avatarUrl} />
               </Link>
               <div>
-                <Link href={`/user/${user.id}`}>
+                <Link href={`/user/${user.username}`}>
                   <p className="line-clamp-1 font-semibold hover:underline">
                     @{user.username}
                   </p>
