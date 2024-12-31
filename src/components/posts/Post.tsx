@@ -7,6 +7,7 @@ import moment from "moment";
 import Link from "next/link";
 import { useSession } from "@/app/(main)/SessionProvider";
 import PostMoreButton from "./delete/PostMoreButton";
+import Linkify from "../Linkify";
 
 interface PostProps {
   post: PostData;
@@ -37,9 +38,9 @@ const Post = ({ post }: PostProps) => {
         </div>
         {post.userId === user.id && <PostMoreButton post={post} />}
       </div>
-      <div>
+      <Linkify>
         <p className="whitespace-pre-line break-words">{post.content}</p>
-      </div>
+      </Linkify>
     </div>
   );
 };
