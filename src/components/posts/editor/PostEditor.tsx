@@ -4,10 +4,8 @@ import React from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import submitPost from "./actions";
 import UserAvatar from "@/components/controls/UserAvatar";
 import { useSession } from "@/app/(main)/SessionProvider";
-import { Button } from "@/components/ui/button";
 import "./styles.css";
 import { SubmitPostMutation } from "./mutations";
 import LoadingButton from "@/components/controls/LoadingButton";
@@ -22,7 +20,7 @@ const PostEditor = () => {
         italic: false,
       }),
       Placeholder.configure({
-        placeholder: "Let's write some posts here!",
+        placeholder: "Write some posts here!",
       }),
     ],
     immediatelyRender: false,

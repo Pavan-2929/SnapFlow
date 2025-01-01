@@ -5,18 +5,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import DeletePostDialog from "./DeletePostDialog";
 
 interface PostMoreButtonProps {
   post: PostData;
-  className?: string;
 }
 
-const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
+const PostMoreButton = ({ post }: PostMoreButtonProps) => {
   const [showDialog, setShowDialog] = useState<boolean>(false);
   return (
     <>

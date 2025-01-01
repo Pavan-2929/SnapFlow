@@ -13,7 +13,6 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import register from "./actionts";
 import { PasswordInput } from "@/components/controls/PasswordInput";
 import LoadingButton from "@/components/controls/LoadingButton";

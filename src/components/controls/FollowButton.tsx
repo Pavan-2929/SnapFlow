@@ -4,7 +4,6 @@ import useFollowerInfo from "@/hooks/useFollowerInfo";
 import kyInstance from "@/lib/ky";
 import { FollowerInfo } from "@/lib/types";
 import {
-  QueryFilters,
   QueryKey,
   useMutation,
   useQueryClient,
