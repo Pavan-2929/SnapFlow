@@ -27,8 +27,8 @@ const FollowButton = ({ userId, initialState }: FollowButtonProps) => {
   const { mutate } = useMutation({
     mutationFn: () =>
       data.isFollowedByLoggedInUser
-        ? kyInstance.delete(`/api/users/${userId}/followers`)
-        : kyInstance.post(`/api/users/${userId}/followers`),
+        ? kyInstance.delete(`/api/user/${userId}/followers`)
+        : kyInstance.get(`/api/user/${userId}/followers`),
 
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey });

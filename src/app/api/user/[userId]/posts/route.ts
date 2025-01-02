@@ -3,12 +3,16 @@ import prisma from "@/lib/prisma";
 import { getPostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params: { userId } }: { params: { userId: string } },
-) {
+export async function GET(req: NextRequest) {
   try {
-    const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
+    const url = req.nextUrl;
+    const cursor = url.searchParams.get("cursor") || undefined;
+    const userId = url.pathname.split("/")[3];
+    console.log("user id", userId);
+
+    if (!userId) {
+      return Response.json({ error: "User ID not provided" }, { status: 400 });
+    }
 
     const pageSize = 10;
 
@@ -39,7 +43,7 @@ export async function GET(
 
     return Response.json(data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return Response.json(
       { error: "Error while fetching posts" },
       { status: 500 },

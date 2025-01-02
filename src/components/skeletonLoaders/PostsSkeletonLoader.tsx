@@ -3,13 +3,13 @@ import { Skeleton } from "../ui/skeleton";
 
 const PostsSkeletonLoader = () => {
   return (
-    <>
+    <div className="space-y-5">
       <PostSkeletonLoader />
       <PostSkeletonLoader />
       <PostSkeletonLoader />
       <PostSkeletonLoader />
       <PostSkeletonLoader />
-    </>
+    </div>
   );
 };
 

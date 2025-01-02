@@ -26,7 +26,7 @@ const UsersPosts = ({ userId }: UsersPostsProps) => {
     queryFn: ({ pageParam }) =>
       kyInstance
         .get(
-          `/api/users/${userId}/posts`,
+          `/api/user/${userId}/posts`,
           pageParam ? { searchParams: { cursor: pageParam } } : {},
         )
         .json<PostsPage>(),

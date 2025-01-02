@@ -24,8 +24,8 @@ const LoginPage = () => {
           </div>
           <div className="space-y-5">
             <LoginForm />
-            <p className="text-medium text-center text-muted-foreground hover:underline">
-              Don't have an account? <Link href="/register">Register</Link>
+            <p className="text-center text-medium text-muted-foreground hover:underline">
+              Don&apos;t have an account? <Link href="/register">Register</Link>
             </p>
           </div>
         </div>
