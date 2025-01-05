@@ -29,7 +29,7 @@ const getUser = cache(async (username: string, loggedInUserId: string) => {
 });
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const resolvedParams = await params; // Await the params promise
+  const resolvedParams = await params;
   const username = resolvedParams.username;
 
   const { user: loggedInUser } = await validateRequest();
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: ProfilePageProps) {
 }
 
 const ProfilePage = async ({ params }: ProfilePageProps) => {
-  const resolvedParams = await params; // Await the params promise
+  const resolvedParams = await params;
   const username = resolvedParams.username;
 
   const { user: loggedInUser } = await validateRequest();
@@ -56,7 +56,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   const user = await getUser(username, loggedInUser.id);
 
   return (
-    <div className="flex w-full gap-5">
+    <div className="sm:flex min-h-screen w-full gap-5">
       <div className="w-full space-y-5">
         <Profile loggedInUserId={loggedInUser.id} user={user} />
         <div className="rounded-2xl bg-card py-3 text-center text-xl font-bold shadow-sm">

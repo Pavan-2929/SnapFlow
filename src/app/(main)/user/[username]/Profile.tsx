@@ -3,7 +3,7 @@ import { FollowerInfo, UserData } from "@/lib/types";
 import React from "react";
 import FollowerCount from "./FollowerCount";
 import FollowButton from "@/components/controls/FollowButton";
-import { Button } from "@/components/ui/button";
+import EditButton from "@/app/(main)/user/[username]/EditButton";
 
 interface ProfileProps {
   loggedInUserId: string;
@@ -28,8 +28,12 @@ const Profile = ({ loggedInUserId, user }: ProfileProps) => {
         <div className="flex items-start justify-between">
           <div className="space-y-5">
             <div className="space-y-1">
-              <p className="text-3xl font-bold">{user.displayName}</p>
-              <p className="text-muted-foreground">@{user.username}</p>
+              <p className="max-w-[150px] truncate text-wrap text-xl font-bold sm:text-3xl md:max-w-[400px]">
+                {user.displayName}
+              </p>
+              <p className="max-w-[120px] text-muted-foreground md:max-w-[380px]">
+                @{user.username}
+              </p>
             </div>
             <div>
               <p className="font-medium">
@@ -45,22 +49,22 @@ const Profile = ({ loggedInUserId, user }: ProfileProps) => {
           </div>
           <div>
             {user.id === loggedInUserId ? (
-              <Button>Edit</Button>
+              <EditButton user={user} />
             ) : (
               <FollowButton userId={user.id} initialState={followerInfo} />
             )}
           </div>
         </div>
-      </div>
-      {user.bio && (
-        <>
-          <hr />
-          <div className="overflow-hidden whitespace-pre-line break-words">
-            {user.bio}
+        {user.bio && (
+          <div className="space-y-3">
+            <hr />
+            <div className="overflow-hidden whitespace-pre-line break-words">
+              {user.bio}
+            </div>
+            <hr />
           </div>
-          <hr />
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 };
