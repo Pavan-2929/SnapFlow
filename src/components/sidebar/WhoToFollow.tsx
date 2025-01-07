@@ -6,7 +6,11 @@ import Link from "next/link";
 import FollowButton from "../controls/FollowButton";
 import { getUserDataSelect } from "@/lib/types";
 
-const WhoToFollow = async () => {
+interface WhoToFollowProps {
+  takeUsers: number;
+}
+
+const WhoToFollow = async ({ takeUsers }: WhoToFollowProps) => {
   const { user } = await validateRequest();
 
   if (!user) return null;
@@ -22,16 +26,16 @@ const WhoToFollow = async () => {
         },
       },
     },
-    take: 5,
+    take: takeUsers,
     select: getUserDataSelect(user.id),
   });
 
   return (
-    <div className="w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="max-h-screen w-full space-y-5 overflow-y-auto rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">
         <p>Users to Follow</p>
       </div>
-      {users &&
+      {users.length > 0 ? (
         users.map((user) => (
           <div key={user.id} className="flex items-center justify-between">
             <div className="flex gap-3">
@@ -61,8 +65,14 @@ const WhoToFollow = async () => {
               />
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          No users to follow at the moment.
+        </p>
+      )}
     </div>
   );
 };
+
 export default WhoToFollow;

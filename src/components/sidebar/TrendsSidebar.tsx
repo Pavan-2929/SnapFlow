@@ -7,7 +7,7 @@ const TrendsSidebar = () => {
   return (
     <div className="sticky top-[5.5rem] hidden h-fit w-72 flex-none space-y-5 shadow-sm md:block lg:w-80">
       <Suspense fallback={<Loader2 className="mx-auto size-6 animate-spin" />}>
-        <WhoToFollow />
+        <WhoToFollow takeUsers={5} />
         <TrendingTopics />
       </Suspense>
     </div>

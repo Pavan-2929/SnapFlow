@@ -1,13 +1,22 @@
+"use client";
+
 import React from "react";
 import { Button } from "./ui/button";
-import { Bell, Bookmark, Home, Compass } from "lucide-react";
+import { Home, Compass, User2Icon, LogOutIcon } from "lucide-react";
 import Link from "next/link";
+import logout from "@/app/(auth)/actions";
+import { useQueryClient } from "@tanstack/react-query";
+import { useSession } from "@/app/(main)/SessionProvider";
 
 interface MenuBarProps {
   className?: string;
 }
 
 const Menubar = ({ className }: MenuBarProps) => {
+  const QueryClient = useQueryClient();
+
+  const { user } = useSession();
+
   return (
     <div className={className}>
       <Button
@@ -24,12 +33,12 @@ const Menubar = ({ className }: MenuBarProps) => {
       <Button
         asChild
         variant="ghost"
-        title="Notifications"
+        title="Profile"
         className="flex items-center justify-start gap-3"
       >
-        <Link href="/notifications">
-          <Bell />
-          <p className="hidden lg:inline">Notifications</p>
+        <Link href={`/user/${user.username}`}>
+          <User2Icon />
+          <p className="hidden lg:inline">Profile</p>
         </Link>
       </Button>
       <Button
@@ -47,12 +56,17 @@ const Menubar = ({ className }: MenuBarProps) => {
         asChild
         variant="ghost"
         title="Bookmarks"
-        className="flex items-center justify-start gap-3"
+        className="flex cursor-pointer items-center justify-start gap-3"
       >
-        <Link href="/bookmarks">
-          <Bookmark />
-          <p className="hidden lg:inline">Bookmarks</p>
-        </Link>
+        <div
+          onClick={() => {
+            logout();
+            QueryClient.clear();
+          }}
+        >
+          <LogOutIcon />
+          <p className="hidden lg:inline">Logout</p>
+        </div>
       </Button>
     </div>
   );

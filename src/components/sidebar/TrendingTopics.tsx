@@ -29,27 +29,34 @@ const getTrendingTopics = unstable_cache(
 );
 
 const TrendingTopics = async () => {
-  const tredingTopicsData = await getTrendingTopics();
+  const trendingTopicsData = await getTrendingTopics();
 
   return (
-    <div className="w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">
         <p>Trending Topics</p>
       </div>
-      {tredingTopicsData.map(({ hashtag, count }, index) => {
-        const title = hashtag.split("#")[1];
 
-        return (
-          <Link href={`/hashtag/${title}`} className="block" key={index}>
-            <p className="line-clamp-1 font-semibold hover:underline">
-              {hashtag}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {formatNumber(count)} {count === 1 ? "post" : "posts"}
-            </p>
-          </Link>
-        );
-      })}
+      {trendingTopicsData.length > 0 ? (
+        trendingTopicsData.map(({ hashtag, count }, index) => {
+          const title = hashtag.split("#")[1];
+
+          return (
+            <Link href={`/hashtag/${title}`} className="block" key={index}>
+              <p className="line-clamp-1 font-semibold hover:underline">
+                {hashtag}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {formatNumber(count)} {count === 1 ? "post" : "posts"}
+              </p>
+            </Link>
+          );
+        })
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          No trending topics available.
+        </p>
+      )}
     </div>
   );
 };
